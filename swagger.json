@@ -59,18 +59,46 @@
         "get":{
             "summary":"GET /users",
             "operationId":"ListUsers",
+            "parameters":[
+              {
+                "name":"keyword",
+                "in": "query",
+                "type":"string"
+              }
+            ],
             "responses":{
                 "200":{
                     "description":"",
                     "schema":{
                         "$ref":"#/definitions/userListUsersResponse"
-                    }
+                      }
+                    },
+                    "400":{
+                      "description":"User data is wrong",
+                      "schema":{
+                    "$ref":"#/definitions/userListUsersErrorResponse/400"
+
+                  }
                 }
             },
-            "tags":["Generic"]
-        
+            "tags":["User Management"]
         }
+    },
+    "/users/{userId}":{
+      "get":{
+        "summary":"GET /users/{userId}",
+        "operationId":"GetUserById",
+        "parameters":[
+          {
+            "name":"userId",
+            "type":"string",
+            "in":"path"
+          }
+        ],
+        "tags":["User Management"]
+      }
     }
+    
   },
   "definitions": {
     "featureFeature": {
@@ -255,6 +283,16 @@
                 "type": "boolean"
             }
         }
+    },
+    "userListUsersErrorResponse":{
+      "400":{
+        "type":"object",
+        "properties":{
+          "message":{
+            "type":"string"
+          }
+        }
+      }
     }
   }
 }

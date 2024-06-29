@@ -21,9 +21,7 @@ restApp.get('/division',(request, response)=>{
         )
         return
     }
-    response.send({
-        answer: numerator/denominator
-    })
+    response.send(`<h1 style="color:red;"> ${numerator/denominator}</h1>`)
 })
 
 restApp.get('/abc',(request, response)=>{
